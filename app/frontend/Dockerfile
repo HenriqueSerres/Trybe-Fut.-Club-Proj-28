@@ -2,12 +2,12 @@ FROM node:16-alpine
 
 WORKDIR /app-frontend
 
-COPY package.json /app/frontend
+COPY package.json ./
 
-RUN npm install
+RUN ["npm", "install"]
 
-COPY . /app/front
+COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "start"]
+CMD ["npm", "start"]
