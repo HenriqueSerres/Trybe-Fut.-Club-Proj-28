@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
-import { IUser } from '../interfaces/usersInterface';
+import { IUser } from '../interfaces/userInterface';
 
 const minhaSenha = process.env.JWT_SECRET || 'jwt_secret';
 
