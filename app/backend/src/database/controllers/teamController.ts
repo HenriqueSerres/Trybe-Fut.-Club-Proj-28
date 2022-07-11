@@ -15,4 +15,15 @@ export default class TeamController {
       next(error);
     }
   }
+
+  async getTeam(req: Request, res: Response, next:NextFunction) {
+    try {
+      const { id } = req.params;
+      const team = await this.service.getTeam(id);
+      return res.status(200).json(team);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }

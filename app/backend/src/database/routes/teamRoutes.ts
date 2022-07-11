@@ -19,5 +19,8 @@ const controller = entityFactory();
 teamRoute.get('/', (req, res, next) => {
   controller.getAllTeams(req, res, next);
 });
+teamRoute.get('/:id', (req, res, next) => {
+  controller.getTeam(req, res, next);
+});
 
 export default teamRoute;
