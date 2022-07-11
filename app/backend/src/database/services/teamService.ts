@@ -11,7 +11,7 @@ export default class TeamService {
     return allTeams;
   }
 
-  async getTeam(id:string): Promise<ITeam> {
+  async getTeam(id:number): Promise<ITeam> {
     const team = await this.model.findOne(id);
     return team;
   }

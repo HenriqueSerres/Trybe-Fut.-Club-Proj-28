@@ -7,13 +7,11 @@ const minhaSenha = process.env.JWT_SECRET || 'jwt_secret';
 const tokenIsValid: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers.authorization;
-    console.log(token);
     if (!token) {
       return res.status(401).json({ message: 'Token not found' });
     }
 
     const decoded = jwt.verify(token, minhaSenha);
-    console.log(decoded);
 
     const { data } = decoded as Idecode;
 

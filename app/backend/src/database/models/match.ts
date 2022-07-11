@@ -4,8 +4,12 @@ import Teams from './team';
 // import OtherModel from './OtherModel';
 
 class Matches extends Model {
-  public id: string;
-  public teamName: string;
+  public id: number;
+  public homeTeam: number;
+  public homeTeamGoals: number;
+  public awayTeam: number;
+  public awayTeamGoals: number;
+  inProgress: boolean;
 }
 
 Matches.init({
@@ -63,10 +67,10 @@ Matches.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-Teams.belongsTo(Matches, { foreignKey: 'id', as: 'homeTeam' });
-Teams.belongsTo(Matches, { foreignKey: 'id', as: 'awayTeam' });
+// Teams.belongsTo(Matches, { foreignKey: 'homeTeam', as: 'teamHome' });
+// Teams.belongsTo(Matches, { foreignKey: 'awayTeam', as: 'teamAway' });
 
-// Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
+Matches.belongsTo(Teams, { foreignKey: 'homeTeam', as: 'teamHome' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 export default Matches;

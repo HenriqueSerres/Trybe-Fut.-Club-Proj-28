@@ -3,7 +3,7 @@ import db from '.';
 // import OtherModel from './OtherModel';
 
 class Teams extends Model {
-  public id: string;
+  public id: number;
   public teamName: string;
 }
 

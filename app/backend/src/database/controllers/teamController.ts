@@ -19,7 +19,7 @@ export default class TeamController {
   async getTeam(req: Request, res: Response, next:NextFunction) {
     try {
       const { id } = req.params;
-      const team = await this.service.getTeam(id);
+      const team = await this.service.getTeam(Number(id));
       return res.status(200).json(team);
     } catch (error) {
       console.log(error);

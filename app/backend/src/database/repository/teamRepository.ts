@@ -8,7 +8,7 @@ export default class TeamRepository implements ITeamModel {
     return allTeams;
   };
 
-  findOne = async (id: string): Promise<ITeam> => {
+  findOne = async (id: number): Promise<ITeam> => {
     const team = await Model.findOne({ where: { id } });
     return team as ITeam;
   };
