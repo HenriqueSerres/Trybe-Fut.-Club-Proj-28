@@ -13,7 +13,7 @@ const verifyUser: RequestHandler = (req, res, next) => {
     return res.status(400).json({ message: 'All fields must be filled' });
   }
   if (error?.message.includes('required')) {
-    return res.status(401).json({ message: 'Incorrect email or password' });
+    return res.status(400).json({ message: 'All fields must be filled' });
   }
   next();
 };
