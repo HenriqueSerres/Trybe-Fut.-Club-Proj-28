@@ -16,7 +16,6 @@ const tokenIsValid: RequestHandler = async (req: Request, res: Response, next: N
     console.log(decoded);
 
     const { data } = decoded as Idecode;
-    console.log({ role: data.role });
 
     return res.status(200).json({ role: data.role });
 
