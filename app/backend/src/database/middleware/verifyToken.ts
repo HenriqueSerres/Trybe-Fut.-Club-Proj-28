@@ -16,11 +16,10 @@ const tokenIsValid: RequestHandler = async (req: Request, res: Response, next: N
     const { data } = decoded as Idecode;
     req.body.user = data;
 
-    next();
+    return next();
   } catch (error) {
-    res.status(401).json({ message: 'Invalid token' });
+    return res.status(401).json({ message: 'Invalid token' });
   }
-  next();
 };
 
 export default tokenIsValid;
