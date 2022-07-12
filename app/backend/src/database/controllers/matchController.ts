@@ -44,4 +44,15 @@ export default class MatchController {
       next(error);
     }
   }
+
+  async updateInProgress(req: Request, res: Response, next:NextFunction) {
+    try {
+      const { id } = req.params;
+      await this.service.updateInProgress(Number(id), req.body);
+      return res.status(200).json({ message: 'The match is updated!!' });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }

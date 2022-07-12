@@ -27,4 +27,8 @@ matchRoute.patch('/:id/finish', tokenIsValid, (req, res, next) => {
   controller.updateMatches(req, res, next);
 });
 
+matchRoute.patch('/:id', (req, res, next) => {
+  controller.updateInProgress(req, res, next);
+});
+
 export default matchRoute;

@@ -6,6 +6,7 @@ export interface IService {
   getAllMatches(): Promise<IMatch[]>;
   createMatches(body:object): Promise<IMatch>;
   updateMatches(id:number): Promise<void>;
+  updateInProgress(id:number, body:IMatch): Promise<void>;
 }
 
 export interface IMatchModel {
