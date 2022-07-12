@@ -23,4 +23,8 @@ matchRoute.post('/', tokenIsValid, (req, res, next) => {
   controller.createMatches(req, res, next);
 });
 
+matchRoute.patch('/:id/finish', tokenIsValid, (req, res, next) => {
+  controller.updateMatches(req, res, next);
+});
+
 export default matchRoute;

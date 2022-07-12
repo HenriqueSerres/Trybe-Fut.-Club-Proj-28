@@ -22,4 +22,10 @@ export default class MatchService {
 
     return match;
   }
+
+  async updateMatches(id:number): Promise<void> {
+    const match = await this.model.update({ inProgress: false }, { where: { id } });
+
+    return match;
+  }
 }
