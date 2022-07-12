@@ -2,11 +2,11 @@ import { IMatch } from '../interfaces/matchInterface';
 
 export interface IService {
   getAllMatches(): Promise<IMatch[]>;
-  // getTeam(id:number): Promise<IMatch>;
+  createMatches(body:object): Promise<IMatch>;
 }
 
 export interface IMatchModel {
   findAll(data:object): Promise<IMatch[]>;
-  // findOne(id:number): Promise<IMatch>;
+  create(body:object): Promise<IMatch>;
 
 }

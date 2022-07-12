@@ -16,4 +16,20 @@ export default class MatchService {
     });
     return allMatches;
   }
+
+  async createMatches(body:object): Promise<IMatch> {
+    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = body as IMatch;
+    const match = await this.model.create(
+      {
+        homeTeam,
+        awayTeam,
+        homeTeamGoals,
+        awayTeamGoals,
+        inProgress: true,
+      },
+    );
+    console.log(match);
+
+    return match;
+  }
 }

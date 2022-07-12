@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import MatchController from '../controllers/matchController';
+import tokenIsValid from '../middleware/verifyToken';
 import Repository from '../repository/matchRepository';
 import Service from '../services/matchSevice';
 
@@ -16,6 +17,10 @@ const controller = entityFactory();
 
 matchRoute.get('/', (req, res, next) => {
   controller.getAllMatches(req, res, next);
+});
+
+matchRoute.post('/', tokenIsValid, (req, res, next) => {
+  controller.createMatches(req, res, next);
 });
 
 export default matchRoute;

@@ -14,8 +14,7 @@ const tokenIsValid: RequestHandler = async (req: Request, res: Response, next: N
     const decoded = jwt.verify(token, minhaSenha);
 
     const { data } = decoded as Idecode;
-
-    return res.status(200).json({ role: data.role });
+    req.body.user = data;
 
     next();
   } catch (error) {

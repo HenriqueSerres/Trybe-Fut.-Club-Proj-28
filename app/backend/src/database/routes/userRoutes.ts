@@ -19,6 +19,9 @@ const controller = entityFactory();
 userRoute.post('/', verifyUser, (req, res, next) => {
   controller.login(req, res, next);
 });
-userRoute.get('/validate', verifyToken);
+userRoute.get('/validate', verifyToken, (req, res, _next) => {
+  const { role } = req.body.user;
+  res.status(200).json({ role });
+});
 
 export default userRoute;
