@@ -44,10 +44,6 @@ export default class MatchService {
   }
 
   async updateInProgress(id:number, body:IMatch): Promise<void> {
-    console.log(body, 'XXXX');
-    // console.log(awayGoals, 'YYYY');
-    // console.log(id, 'ZZZZ');
-
-    await this.model.update({ body }, { where: { id } });
+    await this.model.update(body, { where: { id } });
   }
 }
