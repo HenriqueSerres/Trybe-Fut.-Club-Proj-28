@@ -2,7 +2,8 @@ import { ITeam } from '../interfaces/teamInterface';
 import { IBoard } from '../interfaces/leaderboardInterface';
 import MatchModel from '../models/match';
 import TeamModel from '../models/team';
-import { getOrderSort, homeBoardFormat, teamsFiltered } from '../utils/leaderboardData';
+import { getOrderSort, homeBoardFormat,
+  teamsFiltered, awayBoardFormat } from '../utils/leaderboardData';
 
 export default class LeaderBoardService {
   getAllAtHome = async (): Promise<IBoard[]> => {
@@ -21,7 +22,7 @@ export default class LeaderBoardService {
     const allMatches = await MatchModel.findAll({ where: { inProgress: false } });
     const teams = allTeams.map((team:ITeam) => {
       const awayMatches = teamsFiltered(allMatches, 'away', team.id);
-      const board = homeBoardFormat(awayMatches);
+      const board = awayBoardFormat(awayMatches);
       return { name: team.teamName, ...board };
     });
     return getOrderSort(teams);

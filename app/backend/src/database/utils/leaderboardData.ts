@@ -107,7 +107,7 @@ export function teamsFiltered(matches:IMatch[], place:string, id:number) {
   if (place === 'home') {
     return matches.filter((match) => match.homeTeam === id);
   }
-  return matches.filter((match) => match.homeTeam === id);
+  return matches.filter((match) => match.awayTeam === id);
 }
 
 export function getOrderSort(matches:IBoard[]) {

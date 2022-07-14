@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-// import { IService } from '../protocols/userProtocol';
 import Service from '../services/leaderboardService';
 
 export default class LeaderboardController {
