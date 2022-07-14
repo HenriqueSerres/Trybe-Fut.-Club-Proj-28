@@ -1,3 +1,4 @@
+import { IBoard } from '../interfaces/leaderboardInterface';
 import { IMatch } from '../interfaces/matchInterface';
 
 export function getTotalPoints(matches:IMatch[], place:string) {
@@ -67,9 +68,52 @@ export function getEfficiency(matches: IMatch[], place:string) {
   if (place === 'home') {
     const points = getTotalPoints(matches, 'home');
     const games = getTotalGames(matches);
-    return ((points / (games * 3)) * 100).toFixed(2);
+    return Number(((points / (games * 3)) * 100).toFixed(2));
   }
   const points = getTotalPoints(matches, 'away');
   const games = getTotalGames(matches);
-  return ((points / (games * 3)) * 100).toFixed(2);
+  return Number(((points / (games * 3)) * 100).toFixed(2));
+}
+
+export function homeBoardFormat(matches:IMatch[]) {
+  return {
+    totalPoints: getTotalPoints(matches, 'home'),
+    totalGames: getTotalGames(matches),
+    totalVictories: getVictories(matches, 'home'),
+    totalDraws: getTotalDraws(matches),
+    totalLosses: getLosses(matches, 'home'),
+    goalsFavor: getGoalsFavor(matches, 'home'),
+    goalsOwn: getGoalsOwn(matches, 'home'),
+    goalsBalance: getBalance(matches, 'home'),
+    efficiency: getEfficiency(matches, 'home'),
+  };
+}
+
+export function awayBoardFormat(matches:IMatch[]) {
+  return {
+    totalPoints: getTotalPoints(matches, 'away'),
+    totalGames: getTotalGames(matches),
+    totalVictories: getVictories(matches, 'away'),
+    totalDraws: getTotalDraws(matches),
+    totalLosses: getLosses(matches, 'away'),
+    goalsFavor: getGoalsFavor(matches, 'away'),
+    goalsOwn: getGoalsOwn(matches, 'away'),
+    goalsBalance: getBalance(matches, 'away'),
+    efficiency: getEfficiency(matches, 'away'),
+  };
+}
+
+export function teamsFiltered(matches:IMatch[], place:string, id:number) {
+  if (place === 'home') {
+    return matches.filter((match) => match.homeTeam === id);
+  }
+  return matches.filter((match) => match.homeTeam === id);
+}
+
+export function getOrderSort(matches:IBoard[]) {
+  matches.sort((teamA, teamB) => teamB.totalPoints - teamA.totalPoints
+    || teamB.goalsBalance - teamA.goalsBalance
+    || teamB.goalsFavor - teamA.goalsFavor
+    || teamB.goalsOwn - teamA.goalsOwn);
+  return matches;
 }
