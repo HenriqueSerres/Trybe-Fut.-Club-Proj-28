@@ -18,7 +18,7 @@ leaderboardRoute.get('/home', (req, res, next) => {
   controller.getAllAtHome(req, res, next);
 });
 
-leaderboardRoute.get('/home', (req, res, next) => {
+leaderboardRoute.get('/away', (req, res, next) => {
   controller.getAllAway(req, res, next);
 });
 
