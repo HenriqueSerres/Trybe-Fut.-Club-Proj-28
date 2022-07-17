@@ -1,5 +1,6 @@
 import { IBoard } from '../interfaces/leaderboardInterface';
 import { IMatch } from '../interfaces/matchInterface';
+import { ITeam } from '../interfaces/teamInterface';
 
 export function getTotalPoints(matches:IMatch[], place:string) {
   if (place === 'home') {
@@ -116,4 +117,17 @@ export function getOrderSort(matches:IBoard[]) {
     || teamB.goalsFavor - teamA.goalsFavor
     || teamB.goalsOwn - teamA.goalsOwn);
   return matches;
+}
+
+export function putOnService(teams:ITeam[], matches:IMatch[], place:string) {
+  const leaderBoards = teams.map((team) => {
+    const leaderMatches = teamsFiltered(matches, place, team.id);
+    if (place === 'home') {
+      const board = homeBoardFormat(leaderMatches);
+      return { name: team.teamName, ...board };
+    }
+    const board = awayBoardFormat(leaderMatches);
+    return { name: team.teamName, ...board };
+  });
+  return getOrderSort(leaderBoards);
 }
